@@ -13,7 +13,7 @@ android {
     }
 }
 
-def repo = new File(rootDir, "repository")
+def repo = new File(rootDir, "docs")
 
 apply plugin: 'maven'
 
