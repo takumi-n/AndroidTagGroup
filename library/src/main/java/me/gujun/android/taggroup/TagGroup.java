@@ -206,6 +206,34 @@ public class TagGroup extends ViewGroup {
         }
     }
 
+    public void setBorderColor(int color) {
+        borderColor = color;
+        invalidateAllTagsPaint();
+        invalidate();
+    }
+
+    /**
+     * Returns the tag view at the specified position in the group.
+     *
+     * @param index the position at which to get the tag view from
+     * @return the tag view at the specified position or null if the position
+     * does not exists within this group
+     */
+    protected TagView getTagViewAt(int index) {
+        return (TagView) getChildAt(index);
+    }
+
+    /**
+     * Invalidate all tag views' paint in this group.
+     */
+    protected void invalidateAllTagsPaint() {
+        final int count = getChildCount();
+        for (int i = 0; i < count; i++) {
+            TagView tagView = getTagViewAt(i);
+            tagView.invalidatePaint();
+        }
+    }
+
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         final int widthMode = MeasureSpec.getMode(widthMeasureSpec);
